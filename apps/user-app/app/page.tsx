@@ -1,7 +1,6 @@
-import { PrismaClient } from "@repo/db/client";
-
-const client = new PrismaClient();
+import { useBalance } from "@repo/store/useBalance";
 
 export default function Page() {
-  return <div className="text-2xl">User's app Page.tsx</div>;
+  const balance = useBalance();
+  return <div className="text-2xl">Hi there {balance}</div>;
 }

@@ -1,3 +1,6 @@
+import { useBalance } from "@repo/store/useBalance";
+
 export default function Page() {
-  return <div className="text-2xl">Merchant app's Page.tsx</div>;
+  const balance = useBalance();
+  return <div className="text-2xl">Hi there {balance}</div>;
 }
