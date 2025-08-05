@@ -2,7 +2,7 @@ import "@repo/ui/styles.css";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { Providers } from "../providers";
+import { ReduxProvider } from "../providers";
 
 const geist = Geist({ subsets: ["latin"] });
 
@@ -18,9 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Providers>
+      <ReduxProvider>
         <body className={geist.className}>{children}</body>
-      </Providers>
+      </ReduxProvider>
     </html>
   );
 }

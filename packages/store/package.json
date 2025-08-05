@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "recoil": "^0.7.7"
+    "@reduxjs/toolkit": "^2.8.2",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
   },
   "exports": {
-    "./useBalance": "./src/hooks/useBalance"
+    "./useBalance": "./src/features/balance/useBalance.ts",
+    "./store": "./src/store.ts",
+    "./balanceSlice": "./src/features/balance/balanceSlice.ts"
   }
 }
