@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import db from "@repo/db/client";
+import { Session } from "next-auth";
 
 export const authOptions = {
   providers: [
@@ -23,8 +24,6 @@ export const authOptions = {
       async authorize(
         credentials: Record<"phone" | "password", string> | undefined
       ) {
-        console.log("Credentials:", credentials);
-
         // TODO: OTP validation and zod validation
         if (!credentials) {
           return null;
@@ -78,17 +77,18 @@ export const authOptions = {
       },
     }),
   ],
-  // eslint-disable-next-line turbo/no-undeclared-env-vars
   secret: process.env.JWT_SECRET || "secret",
   callbacks: {
     async session({
-      token,
       session,
+      token,
     }: {
       token: { sub?: string };
-      session: { user: { id?: string } };
+      session: Session & { user: { id?: string } };
     }) {
-      session.user.id = token.sub;
+      if (session.user) {
+        session.user.id = token.sub;
+      }
       return session;
     },
   },
