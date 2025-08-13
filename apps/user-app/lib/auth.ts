@@ -72,8 +72,8 @@ export const authOptions = {
           };
         } catch (e) {
           console.error(e);
+          return null;
         }
-        return null;
       },
     }),
   ],
@@ -90,6 +90,9 @@ export const authOptions = {
         session.user.id = token.sub;
       }
       return session;
+    },
+    async redirect({ baseUrl }: { baseUrl: string }) {
+      return `${baseUrl}/dashboard`; // Always go here after signin
     },
   },
 };
