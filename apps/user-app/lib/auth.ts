@@ -79,16 +79,8 @@ export const authOptions = {
   ],
   secret: process.env.JWT_SECRET || "secret",
   callbacks: {
-    async session({
-      session,
-      token,
-    }: {
-      token: { sub?: string };
-      session: Session & { user: { id?: string } };
-    }) {
-      if (session.user) {
-        session.user.id = token.sub;
-      }
+    async session({ session, token }: any) {
+      session.user.id = token.sub;
       return session;
     },
     async redirect({ baseUrl }: { baseUrl: string }) {
