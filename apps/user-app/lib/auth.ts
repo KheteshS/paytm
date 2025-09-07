@@ -1,7 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import db from "@repo/db/client";
-import { Session } from "next-auth";
 
 export const authOptions = {
   providers: [

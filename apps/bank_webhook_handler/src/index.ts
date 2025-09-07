@@ -3,8 +3,11 @@ import db from "@repo/db/client";
 
 const app = express();
 
+app.use(express.json());
+
 app.post("/hdfcWebhook", async (req, res) => {
   // TODO: zod validation
+  
   const paymentInformation: {
     token: string;
     userId: string;
@@ -37,12 +40,12 @@ app.post("/hdfcWebhook", async (req, res) => {
       }),
     ]);
     return res.json({
-      message: "Captured!",
+      message: "Success!",
     });
   } catch (error) {
     console.error(error);
     res.status(411).json({
-      message: "Error while processing webhook",
+      message: "Error while processing amount",
     });
   }
 });
